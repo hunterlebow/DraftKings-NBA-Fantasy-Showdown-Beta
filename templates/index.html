@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>fantasy bot</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+  </head>
+  <body>
+    <h1>draftkings nba fantasy showdown</h1>
+    <h2>"Captain" Mode</h2>
+    <form id="form-data" action="/" method="post" enctype="multipart/form-data">
+      <label for="file">upload file:</label>
+      <input type="file" id="file" name="file" required /><br />
+      <br />
+      <input type="submit" value="optimize" />
+    </form>
+    <div id="result"></div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

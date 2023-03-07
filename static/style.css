@@ -1,0 +1,107 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  background-color: #f8f9fa;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+}
+
+/* Header styles */
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1,
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+form label {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+form input[type="file"] {
+  margin-bottom: 1rem;
+}
+
+form input[type="submit"] {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+/* Result styles */
+#result {
+  margin-top: 2rem;
+  background-color: #f5f7fa;
+  border: 1px solid #e1e4e8;
+  padding: 1rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+#result p {
+  margin-bottom: 0.5rem;
+}
+
+#result::before {
+  content: "Result:";
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#result model {
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8;
+  display: block;
+  font-family: monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+}
+
+#result model::before {
+  content: ">>> ";
+  white-space: pre;
+}
+
+#result pre {
+  margin: 0;
+}
