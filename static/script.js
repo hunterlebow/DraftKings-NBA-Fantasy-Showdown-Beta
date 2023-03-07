@@ -14,9 +14,29 @@ form.addEventListener("submit", (event) => {
     method: "POST",
     body: formData,
   })
-    .then((response) => response.text()) // change response.json() to response.text()
+    .then((response) => response.json())
     .then((data) => {
-      document.getElementById("result").innerHTML = data; // display data in the "result" element
+      data = data.data;
+      const tableBody = document.getElementById("table-body");
+      tableBody.innerHTML = "";
+      data.forEach((item) => {
+        const row = document.createElement("tr");
+        const statusCell = document.createElement("td");
+        const nameCell = document.createElement("td");
+        const projectedPointsCell = document.createElement("td");
+        const costCell = document.createElement("td");
+
+        statusCell.textContent = item.Status;
+        nameCell.textContent = item.Name;
+        projectedPointsCell.textContent = item["Projected Points"];
+        costCell.textContent = item.Cost;
+        row.appendChild(statusCell);
+        row.appendChild(nameCell);
+        row.appendChild(projectedPointsCell);
+        row.appendChild(costCell);
+
+        tableBody.appendChild(row);
+      });
     })
     .catch((error) => {
       console.error(error);

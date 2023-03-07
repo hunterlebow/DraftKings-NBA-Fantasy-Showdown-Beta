@@ -61,47 +61,55 @@ form input[type="submit"] {
   cursor: pointer;
 }
 
-/* Result styles */
+
 #result {
   margin-top: 2rem;
   background-color: #f5f7fa;
   border: 1px solid #e1e4e8;
+  max-width: 800px;
+  margin: 2rem auto;
   padding: 1rem;
   font-family: monospace;
   font-size: 0.9rem;
   white-space: pre-wrap;
   line-height: 1.5;
   overflow-x: auto;
+  text-align: center; /* added to center the content */
 }
 
-#result p {
-  margin-bottom: 0.5rem;
-}
-
-#result::before {
-  content: "Result:";
-  display: block;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-#result model {
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
   background-color: #ffffff;
   border: 1px solid #e1e4e8;
-  display: block;
-  font-family: monospace;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+th {
+  background-color: #f5f7fa;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-top: 1px solid #e1e4e8;
+}
+
+td {
   font-size: 0.9rem;
-  line-height: 1.5;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  white-space: pre-wrap;
 }
 
-#result model::before {
-  content: ">>> ";
-  white-space: pre;
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
 }
 
-#result pre {
-  margin: 0;
+tbody tr:hover {
+  background-color: #e9ecef;
 }

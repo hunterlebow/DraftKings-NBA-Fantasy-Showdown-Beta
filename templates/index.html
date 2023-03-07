@@ -22,7 +22,20 @@
       <br />
       <input type="submit" value="optimize" />
     </form>
-    <div id="result"></div>
+
+    <div id="result" style="width: 100%"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Name</th>
+          <th>Projected Points</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
