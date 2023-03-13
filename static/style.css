@@ -7,17 +7,17 @@
 
 /* Body styles */
 body {
-  background-color: #f8f9fa;
+  background-color: #f5f5f5;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #000000;
+  color: #333;
 }
 
 /* Header styles */
 header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e1e4e8;
+  background-color: #222;
+  color: #fff;
   padding: 1rem;
   text-align: center;
 }
@@ -50,8 +50,8 @@ form input[type="file"] {
 }
 
 form input[type="submit"] {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #222;
+  color: #fff;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.25rem;
@@ -61,11 +61,29 @@ form input[type="submit"] {
   cursor: pointer;
 }
 
+#file {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #fff;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #666;
+  transition: all 0.2s ease-in-out;
+}
 
-#result {
+#file:hover {
+  box-shadow: 4px 4px 0 #666;
+  transform: translate(-2px, -2px);
+}
+
+#obj-val {
   margin-top: 2rem;
-  background-color: #f5f7fa;
-  border: 1px solid #e1e4e8;
+  background-color: #fff;
+  border: 1px solid #ddd;
   max-width: 800px;
   margin: 2rem auto;
   padding: 1rem;
@@ -74,42 +92,56 @@ form input[type="submit"] {
   white-space: pre-wrap;
   line-height: 1.5;
   overflow-x: auto;
-  text-align: center; /* added to center the content */
+  text-align: center;
 }
 
 /* Table styles */
 table {
   border-collapse: collapse;
-  width: 100%;
-  max-width: 800px;
-  margin: 2rem auto;
-  background-color: #ffffff;
-  border: 1px solid #e1e4e8;
+  width: 90%;
+  margin: 0 auto;
 }
 
 th,
 td {
-  padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid #e1e4e8;
+  padding: 8px;
 }
 
 th {
-  background-color: #f5f7fa;
+  background-color: #ddd;
+  color: #222;
+}
+
+tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+/* Pagination styles */
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
   font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-top: 1px solid #e1e4e8;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out;
 }
 
-td {
-  font-size: 0.9rem;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
-tbody tr:hover {
-  background-color: #e9ecef;
+#pagination button:hover {
+  background-color: #ffffff;
+  color: #000000;
 }

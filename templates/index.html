@@ -23,7 +23,12 @@
       <input type="submit" value="optimize" />
     </form>
 
-    <div id="result" style="width: 100%"></div>
+    <div id="obj-val" style="width: 100%"></div>
+
+    <div id="pagination">
+      <button id="prev-btn" disabled>Prev</button>
+      <button id="next-btn">Next</button>
+    </div>
 
     <table>
       <thead>
@@ -36,6 +41,7 @@
       </thead>
       <tbody id="table-body"></tbody>
     </table>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
