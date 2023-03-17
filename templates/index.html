@@ -14,33 +14,108 @@
     />
   </head>
   <body>
-    <h1>draftkings nba fantasy showdown</h1>
-    <h2>"Captain" Mode</h2>
-    <form id="form-data" action="/" method="post" enctype="multipart/form-data">
-      <label for="file">upload file:</label>
-      <input type="file" id="file" name="file" required /><br />
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <br />
+        <li><a href="/readme">How It Works</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <h1 id="hero-h1">draftkings nba fantasy showdown</h1>
+      <h2 id="hero-h2">"Captain" Mode : Lineup Tool</h2>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="left-panel">
+          <form id="remove-form">
+            <label for="player-remove-search"
+              >search & select player(s) to remove from all solutions</label
+            >
+
+            <div id="remove-input-wrapper">
+              <input
+                type="text"
+                id="player-remove-search"
+                placeholder="Seach here"
+              />
+
+              <br />
+
+              <input
+                type="submit"
+                id="remove-player-btn"
+                value="Remove"
+              />
+            </div>
+
+            <select id="player-dropdown" name="player-dropdown" multiple>
+              <option disabled>Select Player(s)</option>
+            </select>
+
+            <div id="selected-players-div"></div>
+
+            <br />
+          </form>
+        </div>
+
+        <div class="right-panel">
+          <div class="top-right">
+            <form
+              id="form-data"
+              action="/"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <label for="file">upload file (.csv, .xlsx, .xls):</label>
+              <input type="file" id="file" name="file" required />
+              <br />
+              <input type="submit" id="optimize" value="optimize" />
+
+              <br />
+            </form>
+          </div>
+
+          <div class="table-container">
+            <div id="obj-val"></div>
+
+            <div id="pagination">
+              <button id="prev-btn" disabled>Prev</button>
+              <span id="currentPageNumber"></span>
+              <button id="next-btn">Next</button>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Status</th>
+                  <th>Name</th>
+                  <th>Projected Points</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+                <tr>
+                  <td colspan="5" id="empty-cell">Waiting for file upload...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Follow me on LinkedIn:</p>
+      <a href="https://www.linkedin.com/in/hunterlebow/">Hunter Lebow</a>
       <br />
-      <input type="submit" value="optimize" />
-    </form>
-
-    <div id="obj-val" style="width: 100%"></div>
-
-    <div id="pagination">
-      <button id="prev-btn" disabled>Prev</button>
-      <button id="next-btn">Next</button>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Status</th>
-          <th>Name</th>
-          <th>Projected Points</th>
-          <th>Cost</th>
-        </tr>
-      </thead>
-      <tbody id="table-body"></tbody>
-    </table>
+      <a href="https://github.com/hunterlebow">GitHub</a>
+      <br />
+      <a href="/about">About Me</a>
+    </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>

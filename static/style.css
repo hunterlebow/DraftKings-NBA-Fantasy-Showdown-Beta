@@ -7,19 +7,85 @@
 
 /* Body styles */
 body {
-  background-color: #f5f5f5;
+  background-color: #e9e9e9;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #333;
 }
 
-/* Header styles */
-header {
+/* NAV Bar Styles */
+nav {
   background-color: #222;
   color: #fff;
   padding: 1rem;
+}
+
+@media only screen and (max-width: 767px) {
+  nav {
+    order: 1;
+  }
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+nav ul li a:hover {
+  color: #ddd;
+}
+
+/* Container style */
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2.5%;
+}
+@media only screen and (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Header styles */
+header {
+  background-color: #fefefe;
+  color: #333;
+  padding: 1rem;
   text-align: center;
+}
+
+#hero-h1,
+#hero-h2 {
+  font-size: 1.25rem;
+}
+@media screen and (max-width: 767px) {
+  header {
+    order: 2;
+  }
+  #hero-h1,
+  #hero-h2 {
+    font-size: 1rem;
+  }
 }
 
 h1,
@@ -31,12 +97,132 @@ h2 {
   text-align: center;
 }
 
+/* 
+
+>>Remove Form Wrapper 
+  >>Inputs Wrapper
+
+... Form styles 
+*/
+
+.left-panel {
+  width: 25%;
+  height: 100%;
+  background-color: #fefefe;
+  margin-left: 2.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 767px) {
+  .left-panel {
+    width: 90%;
+    order: 4;
+    margin-right: 2.5%;
+    margin-top: 1.5rem;
+  }
+}
+
+#remove-input-wrapper {
+  width: 90%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#remove-form {
+  height: 100%;
+  border: 2px solid #ccc; /* Add a border */
+  padding: 10px; /* Add some padding inside the input */
+  font-size: 16px; /* Increase the font size */
+  font-family: Arial, sans-serif; /* Change the font family */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+}
+#player-remove-search {
+  width: 100%;
+  border: 2px solid #ccc; /* Add a border */
+  padding: 10px; /* Add some padding inside the input */
+  font-size: 16px; /* Increase the font size */
+  font-family: Arial, sans-serif; /* Change the font family */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+}
+
+@media only screen and (max-width: 767px) {
+  #remove-input-wrapper {
+    width: 90%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #player-remove-search {
+    width: 60%;
+  }
+}
+
+#remove-player-btn {
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#remove-player-btn:hover {
+  background-color: #444;
+}
+
+#player-dropdown {
+  border: 2px solid #ccc; /* Add a border */
+  padding: 10px; /* Add some padding inside the input */
+  font-size: 16px; /* Increase the font size */
+  font-family: Arial, sans-serif; /* Change the font family */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+}
+
+/* 
+>> Right Panel Wrapper
+  >> Top-Right Wrapper
+    :- Form-Data && 
+    :- FILE &&
+    :- OPTIMIZE Button
+  >> Table Container Wrapper
+    :- Objective Value DIV
+    >> "Pagination" Functions Wrapper
+      :- Prev-BTN &&
+      :- currentPageNumber &&
+      :- Next-BTN
+    >> Table Styles
+      :- tbody
+*/
+
+.right-panel {
+  width: 75%;
+  height: 100%;
+}
+@media only screen and (max-width: 767px) {
+  .right-panel {
+    order: 3;
+    width: 100%;
+  }
+}
+
+/* .top-right {
+} */
+
 /* Form styles */
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
 }
 
 form label {
@@ -44,9 +230,14 @@ form label {
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
+@media screen and (max-width: 767px) {
+  form label {
+    font-size: 0.75rem;
+  }
+}
 
 form input[type="file"] {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 form input[type="submit"] {
@@ -62,8 +253,8 @@ form input[type="submit"] {
 }
 
 #file {
-  display: inline-block;
-  padding: 10px 20px;
+  width: 35%;
+  padding: 10px;
   border: 1px solid #444;
   background-color: #333;
   color: #fff;
@@ -80,11 +271,28 @@ form input[type="submit"] {
   transform: translate(-2px, -2px);
 }
 
+#optimize {
+  background-color: green;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .table-container table {
+    font-size: 0.8rem;
+  }
+}
+
+/* Objective Value Box */
 #obj-val {
   margin-top: 2rem;
-  background-color: #fff;
+  background-color: #fefefe;
   border: 1px solid #ddd;
-  max-width: 800px;
+  width: 90%;
   margin: 2rem auto;
   padding: 1rem;
   font-family: monospace;
@@ -95,11 +303,46 @@ form input[type="submit"] {
   text-align: center;
 }
 
+/* Pagination styles */
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+#currentPageNumber {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+#pagination button {
+  margin: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#pagination button:hover {
+  background-color: #fefefe;
+  color: #000000;
+}
+
 /* Table styles */
 table {
   border-collapse: collapse;
   width: 90%;
   margin: 0 auto;
+  max-height: fit-content;
+  overflow-y: scroll;
+  background-color: #fefefe;
+  border: 1px solid #222;
 }
 
 th,
@@ -109,39 +352,61 @@ td {
 }
 
 th {
-  background-color: #ddd;
-  color: #222;
+  background-color: #222;
+  color: #fff;
 }
 
 tr:nth-child(even) {
-  background-color: #f5f5f5;
+  background-color: #e9e9e9;
 }
 
 tr:hover {
-  background-color: #e6e6e6;
+  background-color: #c1c1c1;
 }
 
-/* Pagination styles */
-#pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+/* Player dropdown styles */
+#player-dropdown {
+  margin: 1.5rem;
+  width: 90%;
+  /* height: 65%; */
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
 }
 
-#pagination button {
-  background-color: #333;
+#player-dropdown option[disabled] {
+  font-style: italic;
+  color: #999;
+}
+
+/* Footer styles */
+footer {
+  background-color: #222;
   color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 3px;
-  transition: background-color 0.2s ease-in-out;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 10%;
+}
+@media only screen and (max-width: 767px) {
+  footer {
+    order: 5;
+    margin-top: 50%;
+  }
 }
 
-#pagination button:hover {
-  background-color: #ffffff;
-  color: #000000;
+footer p {
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+footer a:hover {
+  color: #ddd;
 }
