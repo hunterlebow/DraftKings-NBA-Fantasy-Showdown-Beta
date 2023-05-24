@@ -33,9 +33,9 @@ def index():
         else:
             df = pd.read_excel(file)
         print("File read success", file.filename)
-        remove_rows = request.json
+        # remove_rows = request.json
 
-        db, players = optimize(df, remove_rows=remove_rows)
+        db, players = optimize(df)
         print("Optimize function success", file.filename)
 
         return_json = jsonify({
@@ -62,14 +62,14 @@ def download_example():
     return send_file("../data/example.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 
-def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
+def optimize(df: pd.DataFrame) -> Dict:
     print("1")
     if not isinstance(df, pd.DataFrame):
         raise TypeError(
             "The file you uploaded can not be converted into a dataframe", 400)
-    if remove_rows:
-        print("There are rows to remove...")
-        df = df[~df["Player"].isin(remove_rows)]
+    # if remove_rows:
+    #     print("There are rows to remove...")
+    #     df = df[~df["Player"].isin(remove_rows)]
 
     players = df.index.tolist()
 
