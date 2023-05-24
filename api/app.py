@@ -50,12 +50,12 @@ def index():
 
 @app.route("/download_template")
 def download_template():
-    return send_file("data/template.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    return send_file("../data/template.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 
 @app.route("/download_example")
 def download_example():
-    return send_file("data/example.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    return send_file("../data/example.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 
 def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
