@@ -21,7 +21,7 @@ def index():
         file = request.files["file"]
         if not file:
             return jsonify({"Error": "No File Uploaded"})
-
+        print("File upload success", file.filename)
         allowed_extensions = set(['csv', 'xls', 'xlsx'])
         extension = file.filename.split('.')[-1].lower()
         if extension not in allowed_extensions:
@@ -32,17 +32,21 @@ def index():
             df = pd.read_csv(file)
         else:
             df = pd.read_excel(file)
-
+        print("File read success", file.filename)
         remove_rows = request.json
 
         db, players = optimize(df, remove_rows=remove_rows)
+        print("Optimize function success", file.filename)
 
-        return jsonify({
+        return_json = jsonify({
             "db": db,
             "players": players,
             "download_template": '<a href="/download_template">Download Template</a>',
             "download_example": '<a href="/download_example">Download Example</a>'
         })
+        print(return_json)
+        print(json.dumps(players))
+        return return_json
 
     else:
         return render_template("index.html")
