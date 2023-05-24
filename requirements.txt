@@ -1,4 +1,4 @@
 Flask==2.2.2
 Flask-Cors==3.0.10
-gurobi==9.5.2
+gurobi
 pandas==1.5.3
