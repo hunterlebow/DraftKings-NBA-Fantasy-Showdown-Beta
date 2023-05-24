@@ -142,4 +142,4 @@ def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
