@@ -63,6 +63,7 @@ def download_example():
 
 
 def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
+    print("1")
     if not isinstance(df, pd.DataFrame):
         raise TypeError(
             "The file you uploaded can not be converted into a dataframe", 400)
@@ -73,6 +74,7 @@ def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
     players = df.index.tolist()
 
     m = gb.Model()
+    print("2")
 
     m.setParam("PoolSearchMode", 2)
     m.setParam("PoolSolutions", 10)
@@ -106,6 +108,7 @@ def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
 
     # Optimize the model
     m.optimize()
+    print("3")
 
     db = {}
 
@@ -141,7 +144,7 @@ def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
 
         db[m.PoolObjVal] = sorted(sorted(
             page_data, key=lambda x: x["Status"]), key=lambda x: x["Projected Points"], reverse=True)
-
+    print("4")
     return db, json.dumps(df["Player"].tolist())
 
 
