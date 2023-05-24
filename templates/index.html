@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>fantasy bot</title>
+    <title>LebOptizimer</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -14,51 +14,28 @@
     />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <br />
-        <li><a href="/readme">How It Works</a></li>
-      </ul>
-    </nav>
-
     <header>
-      <h1 id="hero-h1">draftkings nba fantasy showdown</h1>
-      <h2 id="hero-h2">"Captain" Mode : Lineup Tool</h2>
+      <h1>DraftKings NBA Fantasy Showdown: "Captain" Mode</h1>
+      <h2>Lineup Optimization Tool</h2>
     </header>
 
     <main>
       <div class="container">
         <div class="left-panel">
-          <form id="remove-form">
-            <label for="player-remove-search"
-              >search & select player(s) to remove from all solutions</label
+          <h1>How it Works</h1>
+          <img src="../static/crown-svgrepo-com.svg" alt="Crown SVG logo" style="max-width: 50%; max-height: 50%; margin: auto;"/>
+          <p id="how-it-works">
+          </br>
+           Visit
+            <a href="https://www.draftkings.com/lobby#/NBA"
+              >DraftKings NBA Fantasy Showdown
+            </a>
+            on web or via the DrafKings Fantasy app on the App Store and enter an NBA "Captain" mode pool. Download the following
+            <a href="http://127.0.0.1:5000/download" download
+              >template Excel sheet</a
             >
-
-            <div id="remove-input-wrapper">
-              <input
-                type="text"
-                id="player-remove-search"
-                placeholder="Seach here"
-              />
-
-              <br />
-
-              <input
-                type="submit"
-                id="remove-player-btn"
-                value="Remove"
-              />
-            </div>
-
-            <select id="player-dropdown" name="player-dropdown" multiple>
-              <option disabled>Select Player(s)</option>
-            </select>
-
-            <div id="selected-players-div"></div>
-
-            <br />
-          </form>
+            and fill it out based on the available players to draft and their respective salary and fantasy points per game (FPPG).  Save, select and upload the completed Excel sheet into this tool and click "optimize" to view the top 10 optimal solutions to give you the mathematical best chances to win big.  If you want to exclude any players from the solution pool, simply remove their record from the Excel sheet, save, reupload and "optimize". 
+          </p>
         </div>
 
         <div class="right-panel">
@@ -69,7 +46,7 @@
               method="post"
               enctype="multipart/form-data"
             >
-              <label for="file">upload file (.csv, .xlsx, .xls):</label>
+              <label for="file">Upload file (.csv, .xlsx, .xls):</label>
               <input type="file" id="file" name="file" required />
               <br />
               <input type="submit" id="optimize" value="optimize" />
@@ -99,7 +76,9 @@
               </thead>
               <tbody id="table-body">
                 <tr>
-                  <td colspan="5" id="empty-cell">Waiting for file upload...</td>
+                  <td colspan="5" id="empty-cell">
+                    Waiting for file upload...
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -109,14 +88,32 @@
     </main>
 
     <footer>
-      <p>Follow me on LinkedIn:</p>
-      <a href="https://www.linkedin.com/in/hunterlebow/">Hunter Lebow</a>
-      <br />
-      <a href="https://github.com/hunterlebow">GitHub</a>
-      <br />
-      <a href="/about">About Me</a>
+      <div class="footer-column">
+        <p style="font-size: 18px;"><b>Created by: <span style="color: #62bbc1;">Hunter Lebow</span></b></p>
+        <p>&copy Copyright 2023.  All Rights Reserved.</p>
+        <p style="font-size: 18px;"><b>About</b></p>
+        <p>This project was inspired by my passion for sports, data analytics, and software engineering.  Gamble responsibly.</p>
+      </div>
+      <div class="footer-column">
+        <p style="font-size: 18px;"><b>Built With</b></p>
+        <ul>
+          <li><a href="https://pypi.org/project/Flask/" target="_blank">Flask</a></li>
+          <li><a href="https://www.gurobi.com/documentation/" target="_blank">Gurobipy</a></li>
+          <li><a href="https://www.svgrepo.com" target="_blank">svgrepo.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <p style="font-size: 18px;"><b>Contact</b></p>
+        <ul>
+          <li><a href="mailto:hrl004@bucknell.edu" target="_blank">Contact Us</a></li>
+          <li><a href="https://www.linkedin.com/in/hunterlebow/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://twitter.com/hunter_lebow" target="_blank">Twitter</a></li>
+          <li><a href="https://www.instagram.com/hunterlebow" target="_blank">Instagram</a></li>
+          <li><a href="https://github.com/hunterlebow" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
     </footer>
-
+    
     <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>

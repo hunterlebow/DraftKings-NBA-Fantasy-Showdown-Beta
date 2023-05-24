@@ -3,7 +3,6 @@ from flask_cors import CORS
 import gurobipy as gb
 import pandas as pd
 import json
-import math
 from typing import Dict
 
 app = Flask(__name__)
@@ -34,18 +33,28 @@ def index():
         else:
             df = pd.read_excel(file)
 
-        db, players = optimize(df)
+        remove_rows = request.json
 
-        return jsonify({"db":db, "players":players})        
+        db, players = optimize(df, remove_rows=remove_rows)
+
+        return jsonify({"db": db, "players": players}), '<a href="/download">Download Template</a>'
 
     else:
         return render_template("index.html")
 
 
-def optimize(df: pd.DataFrame) -> Dict:
+@app.route("/download")
+def download_template():
+    return send_file("data/template.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
+
+def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
     if not isinstance(df, pd.DataFrame):
         raise TypeError(
             "The file you uploaded can not be converted into a dataframe", 400)
+    if remove_rows:
+        print("There are rows to remove...")
+        df = df[~df["Player"].isin(remove_rows)]
 
     players = df.index.tolist()
 
@@ -120,9 +129,6 @@ def optimize(df: pd.DataFrame) -> Dict:
             page_data, key=lambda x: x["Status"]), key=lambda x: x["Projected Points"], reverse=True)
 
     return db, json.dumps(df["Player"].tolist())
-
-    # create a dropdown menu of every player in the dataset, select multiple
-    # selected are removed from optimal solution consideration before optimization
 
 
 if __name__ == "__main__":
