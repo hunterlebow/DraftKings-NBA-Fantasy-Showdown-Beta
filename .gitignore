@@ -1,6 +1,4 @@
 .env
-/data
 /models
 /__pycache__
 /.vscode
-/.gitignore
