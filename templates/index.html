@@ -24,6 +24,7 @@
         <div class="left-panel">
           <h1>How it Works</h1>
           <img src="../static/crown-svgrepo-com.svg" alt="Crown SVG logo" style="max-width: 50%; max-height: 50%; margin: auto;"/>
+          <br/>
           <p id="how-it-works">
           </br>
            Visit
@@ -31,10 +32,16 @@
               >DraftKings NBA Fantasy Showdown
             </a>
             on web or via the DrafKings Fantasy app on the App Store and enter an NBA "Captain" mode pool. Download the following
-            <a href="http://127.0.0.1:5000/download" download
+            <a href="http://127.0.0.1:5000/download_template" download
               >template Excel sheet</a
             >
-            and fill it out based on the available players to draft and their respective salary and fantasy points per game (FPPG).  Save, select and upload the completed Excel sheet into this tool and click "optimize" to view the top 10 optimal solutions to give you the mathematical best chances to win big.  If you want to exclude any players from the solution pool, simply remove their record from the Excel sheet, save, reupload and "optimize". 
+            and fill it out based on the available players to draft and their respective salary and fantasy points per game (FPPG).  (Or download 
+            <a href="http://127.0.0.1:5000/download_example" download
+              >this example Excel sheet</a
+            >
+            ) to see how the tool works.  Save, select and upload the completed Excel sheet into this tool and click "optimize" to view the top 10 optimal solutions to give you the mathematical best chances to win big.  If you want to exclude any players from the solution pool, simply remove their record from the Excel sheet, save, reupload and "optimize". 
+            <br/><br/>
+            The tool calculates who should be elected Captain (1.5x points and 1.5x cost) and what other players to include in the lineup while simulatenously exhausting DraftKing's designated lineup budget. The objective is to maximize the lineup's total projected fantasy points per game.
           </p>
         </div>
 
@@ -97,6 +104,7 @@
       <div class="footer-column">
         <p style="font-size: 18px;"><b>Built With</b></p>
         <ul>
+          <li><a href="https://www.python.org" target="_blank">Python 3.9.12</a></li>
           <li><a href="https://pypi.org/project/Flask/" target="_blank">Flask</a></li>
           <li><a href="https://www.gurobi.com/documentation/" target="_blank">Gurobipy</a></li>
           <li><a href="https://www.svgrepo.com" target="_blank">svgrepo.com</a></li>

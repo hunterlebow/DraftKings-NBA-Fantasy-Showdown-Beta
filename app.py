@@ -37,15 +37,25 @@ def index():
 
         db, players = optimize(df, remove_rows=remove_rows)
 
-        return jsonify({"db": db, "players": players}), '<a href="/download">Download Template</a>'
+        return jsonify({
+            "db": db,
+            "players": players,
+            "download_template": '<a href="/download_template">Download Template</a>',
+            "download_example": '<a href="/download_example">Download Example</a>'
+        })
 
     else:
         return render_template("index.html")
 
 
-@app.route("/download")
+@app.route("/download_template")
 def download_template():
     return send_file("data/template.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
+
+@app.route("/download_example")
+def download_example():
+    return send_file("data/example.xlsx", as_attachment=True, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 
 def optimize(df: pd.DataFrame, remove_rows=None) -> Dict:
