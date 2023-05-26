@@ -21,22 +21,19 @@ def index():
         file = request.files["file"]
         if not file:
             return jsonify({"Error": "No File Uploaded"})
-        print("File upload success", file.filename)
+
         allowed_extensions = set(['csv', 'xls', 'xlsx'])
         extension = file.filename.split('.')[-1].lower()
+
         if extension not in allowed_extensions:
             return 'Invalid file extension'
 
-        # Read the data from the file using pandas
         if extension == 'csv':
             df = pd.read_csv(file)
         else:
             df = pd.read_excel(file)
-        print("File read success", file.filename)
-        # remove_rows = request.json
 
         db, players = optimize(df)
-        print("Optimize function success", file.filename)
 
         return_json = jsonify({
             "db": db,
@@ -44,8 +41,7 @@ def index():
             "download_template": '<a href="/download_template">Download Template</a>',
             "download_example": '<a href="/download_example">Download Example</a>'
         })
-        print(return_json)
-        print(json.dumps(players))
+
         return return_json
 
     else:
@@ -63,18 +59,13 @@ def download_example():
 
 
 def optimize(df: pd.DataFrame) -> Dict:
-    print("1")
     if not isinstance(df, pd.DataFrame):
         raise TypeError(
             "The file you uploaded can not be converted into a dataframe", 400)
-    # if remove_rows:
-    #     print("There are rows to remove...")
-    #     df = df[~df["Player"].isin(remove_rows)]
 
     players = df.index.tolist()
 
     m = gb.Model()
-    print("2")
 
     m.setParam("PoolSearchMode", 2)
     m.setParam("PoolSolutions", 10)
@@ -108,7 +99,6 @@ def optimize(df: pd.DataFrame) -> Dict:
 
     # Optimize the model
     m.optimize()
-    print("3")
 
     db = {}
 
@@ -144,7 +134,7 @@ def optimize(df: pd.DataFrame) -> Dict:
 
         db[m.PoolObjVal] = sorted(sorted(
             page_data, key=lambda x: x["Status"]), key=lambda x: x["Projected Points"], reverse=True)
-    print("4")
+
     return db, json.dumps(df["Player"].tolist())
 
 
