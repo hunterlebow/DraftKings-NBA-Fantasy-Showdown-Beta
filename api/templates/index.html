@@ -12,6 +12,14 @@
       rel="shortcut icon"
       href="{{ url_for('static', filename='favicon.ico') }}"
     />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="api/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="api/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="api/favicon-16x16.png">
+    <link rel="manifest" href="api/site.webmanifest">
+    <link rel="mask-icon" href="api/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
   </head>
   <body>
     <header>
@@ -99,15 +107,16 @@
         <p style="font-size: 18px;"><b>Created by: <span style="color: #62bbc1;">Hunter Lebow</span></b></p>
         <p>&copy Copyright 2023.  All Rights Reserved.</p>
         <p style="font-size: 18px;"><b>About</b></p>
-        <p>This project was inspired by my passion for sports, data analytics, and software engineering.  Gamble responsibly.</p>
+        <p>This project was inspired by my passion for sports, data analytics, and software engineering.  Check out this 
+          <span style="color: #62bbc1;"><a href="https://github.com/hunterlebow/DraftKings-NBA-Fantasy-Showdown-Beta" target="_blank">GitHub Repository link</a></span> for this project if you would like to contribute!
+        </p>
       </div>
       <div class="footer-column">
         <p style="font-size: 18px;"><b>Built With</b></p>
         <ul>
-          <li><a href="https://www.python.org" target="_blank">Python 3.9.12</a></li>
           <li><a href="https://pypi.org/project/Flask/" target="_blank">Flask</a></li>
-          <li><a href="https://www.gurobi.com/documentation/" target="_blank">Gurobipy</a></li>
-          <li><a href="https://pypi.org/project/pandas/" target="_blank">Pandas</a></li>
+          <li><a href="https://www.gurobi.com/documentation/" target="_blank">Gurobi Optimization</a></li>
+          <li><a href="https://vercel.com" target="_blank">Vercel</a></li>
           <li><a href="https://www.svgrepo.com" target="_blank">svgrepo.com</a></li>
         </ul>
       </div>
