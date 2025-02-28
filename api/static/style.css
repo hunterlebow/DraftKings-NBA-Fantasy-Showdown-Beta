@@ -922,3 +922,216 @@ footer {
     font-size: 0.7rem;
   }
 }
+
+/* iPhone-specific fixes */
+@media screen and (max-width: 480px) {
+  /* Fix container padding */
+  .container {
+    padding: 1rem 0.75rem;
+  }
+  
+  /* Adjust hero section for smaller screens */
+  .hero {
+    padding: 2.5rem 0;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 0.95rem;
+    padding: 0 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Fix navigation on small screens */
+  .nav-container {
+    padding: 0.75rem;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  /* Adjust steps section for better mobile display */
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .step {
+    padding: 1.25rem 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Fix form elements on small screens */
+  .upload-container {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .upload-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .upload-btn, .submit-btn {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Fix table overflow issues */
+  .player-table {
+    font-size: 0.8rem;
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .player-table th,
+  .player-table td {
+    padding: 0.4rem 0.3rem;
+    white-space: nowrap;
+  }
+  
+  /* Fix lineup stats display */
+  .lineup-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .stat {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  /* Fix tabs scrolling */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    padding-bottom: 0.5rem;
+  }
+  
+  .tabs::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+  
+  .tab {
+    flex: 0 0 auto;
+    min-width: 90px;
+  }
+  
+  /* Fix about section */
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-image {
+    margin-top: 1.5rem;
+  }
+  
+  /* Fix footer for iPhone */
+  .footer-container {
+    padding: 1.5rem 0.75rem;
+  }
+}
+
+/* Fix for notched iPhones (X, 11, 12, 13, etc.) */
+@media screen and (max-width: 480px) and (min-height: 800px) {
+  .navbar {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .hero {
+    padding-top: calc(2rem + env(safe-area-inset-top));
+  }
+  
+  footer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Fix for iPhone SE and other very small screens */
+@media screen and (max-width: 375px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .section-title h2 {
+    font-size: 1.6rem;
+  }
+  
+  .step-icon {
+    font-size: 2.2rem;
+  }
+  
+  .tab {
+    min-width: 80px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Improve About section SVG display on mobile */
+@media screen and (max-width: 768px) {
+  /* Make the about content stack vertically */
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  /* Place image below text */
+  .about-image {
+    order: 2;
+    margin-top: 1.5rem;
+  }
+  
+  /* Make SVG larger and centered */
+  .about-image svg {
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+/* For very small screens, consider hiding the SVG */
+@media screen and (max-width: 480px) {
+  /* Option 1: Hide SVG completely */
+  .about-image {
+    display: none;
+  }
+  
+  /* Option 2 (alternative): Make SVG smaller but still visible 
+  .about-image {
+    margin-top: 1rem;
+  }
+  
+  .about-image svg {
+    max-width: 60%;
+  }
+  */
+}
+
+/* Add styling for the disclaimer */
+.disclaimer {
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.disclaimer p {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Adjust spacing between disclaimer and copyright */
+.copyright {
+  margin-top: 1rem;
+  border-top: none;
+}
