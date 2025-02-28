@@ -4,3 +4,4 @@
 /.vscode
 .DS_Store
 api/__pycache__
+/venv

@@ -1,56 +1,52 @@
-<h1>Use the Tool on the Web!</h1>
-Visit https://pykings.io to use this tool for free!
+# PyKings.io
 
-<h1>How it works</h1>
-1. Download the sample excel, or download the template excel sheet to fill in your own DraftKings game data!
-2. Upload the Excel Sheet and press the "Optimize" button.
-3. The tool returns a table of the top 10 best lineups, stored in order from best lineup to 10th best lineup
+A linear programming tool for optimizing DraftKings NBA Showdown lineups. Built as a portfolio project to demonstrate optimization algorithms.
 
-The tool selects:
-1. Your Captain, who earns 1.5x fantasy points at the price of 1.5x cost
-2. The rest of the utility players to make a complete fantasy lineup
-3. Each complete lineup will be crafted to maximize Fantasy Points per Game while exhausting the $50,000 budget constraint.
+## Features
 
-<h2>Under the Hood</h2>
-The user uploads the Excel sheet and the data is read in and stored.  A custom optimization algorithm then finds the optimal lineup solution.
-Each lineup solution considers:
+- Upload player data with projected points and salaries
+- Generate optimal lineups using PuLP linear programming
+- View multiple lineup variations with detailed breakdowns
+- Responsive design for desktop and mobile devices
 
-1. Maximizing fantasy points per game
-  
-3. $50,000 overall budget,
-  
-   
-5. Exactly 1 Captain (who costs 1.5x price and recieves a 1.5x boost on fantasy poinst)
-  
-7. Exactly 5 Utility players
-   
-8. Exactly 6 Players per lineup solution (1 Captain + 5 Utility).
-   
-10. Every player can only be used a maximum of 1 time per lineup solution.
+## Technology Stack
 
-A Solution pool of 10 is created, so that the user has 10 options to inspire them for their DraftKings lineup selection.  
+- **Backend**: Python, Flask, PuLP (linear programming)
+- **Frontend**: HTML, CSS, JavaScript
+- **Data Processing**: Pandas
 
-<h3>Technologies Used</h3>
+## How It Works
 
-- Python (Flask, Gurobipy, OpenPyXL, Pandas)
+The optimizer uses linear programming to find the best possible lineup combinations:
 
-- HTML
-  
-- CSS
-  
-- JavaScript
+1. **Upload Data**: Provide player data including names, projected points, and salaries
+2. **Optimization**: The algorithm maximizes projected points while respecting the salary cap
+3. **Results**: View multiple optimized lineups with detailed statistics
 
-<h3>Custom Solutions</h3>
-On DraftKings NBA "Captain Mode" fantasy challenges, enter a pool and download the "template Excel sheet".
-Fill this template Excel sheet out with Player Name, Cost, and Projected Fantasy Points per Game.
-**Make sure you are considering the correct data that is relative to a Utility player selection, not Captain.  
+## Installation
 
-<h1>Future Considerations</h1>
-Supporting more game modes and other fantasy sports hosted by DraftKings and potentially other Sportsbooks like Fanduel.
+1. Clone the repository
+2. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Run the application:
+   ```
+   python api/app.py
+   ```
+4. Open your browser and navigate to `http://localhost:5000`
 
-Visit https://pykings.io to use this tool free!
+## Usage
 
+1. Download the template or example file
+2. Fill in your player data
+3. Upload the file and generate lineups
+4. Review the optimized lineups
 
+## License
 
+MIT
 
+## Created By
 
+Hunter Lebow
