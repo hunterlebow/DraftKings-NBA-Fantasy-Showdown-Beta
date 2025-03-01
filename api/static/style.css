@@ -841,17 +841,79 @@ footer {
   }
   
   .lineup-stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  
+  .stat {
+    flex: 1 1 auto;
+    min-width: 100px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+  }
+  
+  .stat-value {
+    font-size: 1.1rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
   }
   
   .player-table {
-    font-size: 0.85rem;
+    display: block;
+    width: 100%;
+    border: none;
   }
   
-  .player-table th,
+  .player-table thead {
+    display: none; /* Hide table headers */
+  }
+  
+  .player-table tbody {
+    display: block;
+    width: 100%;
+  }
+  
+  .player-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: var(--white);
+  }
+  
   .player-table td {
-    padding: 0.5rem 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    text-align: right;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  
+  .player-table td:last-child {
+    border-bottom: none;
+  }
+  
+  /* Add labels for each cell */
+  .player-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  /* Special styling for captain rows */
+  .player-table tr.captain {
+    border-left: 3px solid var(--dk-green);
+    background-color: rgba(20, 174, 92, 0.05);
+  }
+  
+  /* Adjust badges in mobile table view */
+  .captain-badge, .utility-badge {
+    margin-left: auto;
   }
   
   /* About section */
@@ -881,6 +943,171 @@ footer {
   .footer-links a:hover {
     transform: translateX(0);
   }
+  
+  /* Hide the horizontal nav links by default */
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+  }
+  
+  /* Show nav links when active */
+  .nav-links.active {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Style nav links for mobile */
+  .nav-link {
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+  
+  /* Remove the underline animation for mobile */
+  .nav-link::after {
+    display: none;
+  }
+  
+  /* Make the mobile menu button more prominent */
+  .mobile-menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--dark);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-menu-btn:hover {
+    color: var(--dk-green);
+  }
+  
+  /* Adjust navbar height for mobile */
+  .nav-container {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Make logo smaller on mobile */
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  .logo img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  /* Improve steps layout for mobile */
+  .steps {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Adjust individual step cards */
+  .step {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+    padding: 1.5rem;
+  }
+  
+  /* Make step icons smaller on mobile */
+  .step-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Reduce hover effect on mobile */
+  .step:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Ensure all containers respect viewport width */
+  .container, 
+  section, 
+  .card, 
+  .hero-content,
+  .steps,
+  .step,
+  .upload-section,
+  .results-section,
+  .about-section,
+  .about-card,
+  .about-content,
+  .footer-container {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure text doesn't overflow */
+  p, h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix potential table overflow */
+  .player-table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure images don't cause overflow */
+  img, svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Fix the missing borders on the last player card */
+  .player-table tr:last-child {
+    margin-bottom: 0; /* Remove extra margin from last card */
+    border: 1px solid var(--gray-light); /* Ensure border is applied */
+  }
+  
+  /* Fix the border issue on the last cell */
+  .player-table td {
+    border-bottom: 1px solid var(--gray-light);
+  }
+  
+  /* Only remove border from the very last cell in each row */
+  .player-table tr td:last-of-type {
+    border-bottom: none;
+  }
+  
+  /* Ensure captain styling is consistent */
+  .player-table tr.captain:last-child {
+    border-left: 3px solid var(--dk-green);
+  }
 }
 
 /* Small mobile devices */
@@ -895,15 +1122,17 @@ footer {
   }
   
   .step {
-    padding: 1.5rem 1rem;
+    padding: 1.25rem 1rem;
   }
   
   .step-icon {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
   }
   
   .step h3 {
     font-size: 1.3rem;
+    margin-bottom: 0.5rem;
   }
   
   .upload-btn,
@@ -913,12 +1142,22 @@ footer {
   }
   
   .lineup-stats {
-    grid-template-columns: 1fr;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
   }
   
-  .captain-badge,
-  .utility-badge {
-    padding: 0.2rem 0.4rem;
+  .stat {
+    min-width: 0;
+    flex: 1;
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .stat-value {
+    font-size: 0.95rem;
+  }
+  
+  .stat-label {
     font-size: 0.7rem;
   }
 }
@@ -1134,4 +1373,149 @@ footer {
 .copyright {
   margin-top: 1rem;
   border-top: none;
+}
+
+/* Clean up duplicate code and fix horizontal overflow issues */
+
+/* Base overflow prevention */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Mobile-friendly table solution */
+@media (max-width: 768px) {
+  /* Convert table to a card-based layout on mobile */
+  .player-table {
+    display: block;
+    width: 100%;
+    border: none;
+  }
+  
+  .player-table thead {
+    display: none; /* Hide table headers */
+  }
+  
+  .player-table tbody {
+    display: block;
+    width: 100%;
+  }
+  
+  .player-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: var(--white);
+  }
+  
+  .player-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    text-align: right;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  
+  .player-table td:last-child {
+    border-bottom: none;
+  }
+  
+  /* Add labels for each cell */
+  .player-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  /* Special styling for captain rows */
+  .player-table tr.captain {
+    border-left: 3px solid var(--dk-green);
+    background-color: rgba(20, 174, 92, 0.05);
+  }
+  
+  /* Adjust badges in mobile table view */
+  .captain-badge, .utility-badge {
+    margin-left: auto;
+  }
+}
+
+/* Mobile pagination for lineup results */
+.mobile-pagination {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.pagination-arrow {
+  background-color: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--primary);
+}
+
+.pagination-arrow:hover, .pagination-arrow:focus {
+  background-color: var(--dk-green);
+  color: var(--white);
+  border-color: var(--dk-green);
+}
+
+.pagination-arrow.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.pagination-indicator {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary);
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Show pagination on a wider range of devices */
+@media (max-width: 992px) {
+  .mobile-pagination {
+    display: flex;
+  }
+  
+  /* Hide tabs on tablet and mobile */
+  .tabs {
+    display: none;
+  }
+}
+
+/* Fix the missing borders on the last player card */
+@media (max-width: 768px) {
+  .player-table tr:last-child {
+    margin-bottom: 0; /* Remove extra margin from last card */
+    border: 1px solid var(--gray-light); /* Ensure border is applied */
+  }
+  
+  /* Fix the border issue on the last cell */
+  .player-table td {
+    border-bottom: 1px solid var(--gray-light);
+  }
+  
+  /* Only remove border from the very last cell in each row */
+  .player-table tr td:last-of-type {
+    border-bottom: none;
+  }
+  
+  /* Ensure captain styling is consistent */
+  .player-table tr.captain:last-child {
+    border-left: 3px solid var(--dk-green);
+  }
 }

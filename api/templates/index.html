@@ -36,7 +36,11 @@
           <a href="#optimizer" class="nav-link">Optimizer</a>
           <a href="#about" class="nav-link">About</a>
         </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Toggle navigation menu"
+        >
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -163,6 +167,24 @@
             <h2>Optimal Lineups</h2>
             <button class="back-btn" id="backBtn">
               <i class="fas fa-arrow-left"></i> Back to Upload
+            </button>
+          </div>
+
+          <div class="mobile-pagination" id="mobilePagination">
+            <button
+              class="pagination-arrow prev-arrow"
+              id="prevLineup"
+              aria-label="Previous lineup"
+            >
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="pagination-indicator" id="paginationIndicator">1/5</div>
+            <button
+              class="pagination-arrow next-arrow"
+              id="nextLineup"
+              aria-label="Next lineup"
+            >
+              <i class="fas fa-chevron-right"></i>
             </button>
           </div>
 
@@ -537,18 +559,42 @@
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const navLinks = document.getElementById("navLinks");
 
-        mobileMenuBtn.addEventListener("click", function () {
-          navLinks.classList.toggle("active");
+        if (mobileMenuBtn) {
+          mobileMenuBtn.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
 
-          // Change icon based on menu state
-          const icon = mobileMenuBtn.querySelector("i");
-          if (navLinks.classList.contains("active")) {
-            icon.classList.remove("fa-bars");
-            icon.classList.add("fa-times");
-          } else {
-            icon.classList.remove("fa-times");
-            icon.classList.add("fa-bars");
+            // Change icon based on menu state
+            const icon = mobileMenuBtn.querySelector("i");
+            if (navLinks.classList.contains("active")) {
+              icon.classList.remove("fa-bars");
+              icon.classList.add("fa-times");
+            } else {
+              icon.classList.remove("fa-times");
+              icon.classList.add("fa-bars");
+            }
+          });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            navLinks.classList.contains("active") &&
+            !navLinks.contains(event.target) &&
+            !mobileMenuBtn.contains(event.target)
+          ) {
+            navLinks.classList.remove("active");
+            mobileMenuBtn.querySelector("i").classList.remove("fa-times");
+            mobileMenuBtn.querySelector("i").classList.add("fa-bars");
           }
+        });
+
+        // Close mobile menu when clicking a nav link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.addEventListener("click", function () {
+            navLinks.classList.remove("active");
+            mobileMenuBtn.querySelector("i").classList.remove("fa-times");
+            mobileMenuBtn.querySelector("i").classList.add("fa-bars");
+          });
         });
 
         // Smooth scrolling for navigation links
@@ -835,6 +881,7 @@
 
               // Role cell
               const roleCell = document.createElement("td");
+              roleCell.setAttribute("data-label", "Role");
               const roleBadge = document.createElement("span");
               roleBadge.className =
                 player.Status === "Captain" ? "captain-badge" : "utility-badge";
@@ -843,14 +890,17 @@
 
               // Player name cell
               const nameCell = document.createElement("td");
+              nameCell.setAttribute("data-label", "Player");
               nameCell.textContent = player.Name;
 
               // Points cell
               const pointsCell = document.createElement("td");
+              pointsCell.setAttribute("data-label", "Projected Points");
               pointsCell.textContent = player["Projected Points"].toFixed(2);
 
               // Salary cell
               const salaryCell = document.createElement("td");
+              salaryCell.setAttribute("data-label", "Salary");
               salaryCell.textContent = `$${player.Cost.toLocaleString()}`;
 
               row.appendChild(roleCell);
@@ -868,6 +918,70 @@
 
             lineupResults.appendChild(lineupDiv);
           });
+
+          // Mobile pagination functionality
+          setupMobilePagination(lineupKeys);
+        }
+
+        // Mobile pagination functionality
+        function setupMobilePagination(lineupKeys) {
+          const prevBtn = document.getElementById("prevLineup");
+          const nextBtn = document.getElementById("nextLineup");
+          const indicator = document.getElementById("paginationIndicator");
+          let currentIndex = 0;
+          const totalLineups = lineupKeys.length;
+
+          // Initial state
+          updatePaginationState();
+
+          // Event listeners
+          prevBtn.addEventListener("click", function () {
+            if (currentIndex > 0) {
+              currentIndex--;
+              showLineup(lineupKeys[currentIndex]);
+              updatePaginationState();
+            }
+          });
+
+          nextBtn.addEventListener("click", function () {
+            if (currentIndex < totalLineups - 1) {
+              currentIndex++;
+              showLineup(lineupKeys[currentIndex]);
+              updatePaginationState();
+            }
+          });
+
+          function showLineup(key) {
+            // Hide all lineups
+            document
+              .querySelectorAll(".lineup")
+              .forEach((l) => l.classList.remove("active"));
+
+            // Show selected lineup
+            document
+              .getElementById(`lineup-${key.replace(".", "-")}`)
+              .classList.add("active");
+
+            // Update active tab (for desktop view)
+            document
+              .querySelectorAll(".tab")
+              .forEach((t) => t.classList.remove("active"));
+            document
+              .querySelector(`.tab[data-lineup="${key}"]`)
+              .classList.add("active");
+          }
+
+          function updatePaginationState() {
+            // Update indicator
+            indicator.textContent = `${currentIndex + 1}/${totalLineups}`;
+
+            // Update button states
+            prevBtn.classList.toggle("disabled", currentIndex === 0);
+            nextBtn.classList.toggle(
+              "disabled",
+              currentIndex === totalLineups - 1
+            );
+          }
         }
       });
     </script>
